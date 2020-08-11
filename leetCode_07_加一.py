@@ -1,6 +1,6 @@
 """
 day: 2020-08-11
-url: https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/x21ib6/
+url: https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/x2cv1c/
 题目名: 加一
 题目描述: 给给定一个由整数组成的非空数组所表示的非负整数,在该数的基础上加一.
 数组首位是数字的最高位,除了整数0之外,整数不会以0开头

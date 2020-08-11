@@ -1,6 +1,6 @@
 """
 day: 2020-08-11
-url: https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/x21ib6/
+url: https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/x2y0c2/
 题目名: 两个数组的交集
 题目描述: 给定两个数组,编写一个函数来计算它们的交集
 示例:
