@@ -18,6 +18,13 @@ url: https://leetcode-cn.com/leetbook/read/top-interview-questions-medium/xvpj16
 <=-a时,进行比较,若b==c,随着b的增加,数组中不可能存在c满足条件,所以直接跳出本次循环,否则看值是否为0
 
 2. 记录数字出现的次序
+使用字典记录数组中数字出现的次数,在遍历数组时我们会遇到四种情况
+1. key为0且value>2:
+    将[0, 0, 0]添加到res中
+2. value>1且key*-2存在于字典中:
+    将[key, key, key*-2]添加到res中
+3. 正常情况:
+    
 """
 
 
