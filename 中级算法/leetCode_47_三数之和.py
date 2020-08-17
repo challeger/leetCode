@@ -17,14 +17,17 @@ url: https://leetcode-cn.com/leetbook/read/top-interview-questions-medium/xvpj16
 开始,当头指针b指向的变量与尾指针c指向的变量>-a时,将尾指针左移一位,直到b == c或者 两个指针的值的和
 <=-a时,进行比较,若b==c,随着b的增加,数组中不可能存在c满足条件,所以直接跳出本次循环,否则看值是否为0
 
-2. 记录数字出现的次序
-使用字典记录数组中数字出现的次数,在遍历数组时我们会遇到四种情况
+2. 记录数字出现的次数
+使用字典记录数组中数字出现的次数,在遍历数组时我们会遇到三种情况
 1. key为0且value>2:
     将[0, 0, 0]添加到res中
 2. value>1且key*-2存在于字典中:
     将[key, key, key*-2]添加到res中
 3. 正常情况:
-    
+    对于我们当前状况的答案,三个数字的关系应该是
+    x < y < z, y + z = -x, 所以z的最小值应该是(-x//2+1)
+    我们定义一个z的指针,从右侧开始,一直移动到它指向的值小于等于z的最小值,
+    在移动过程中,y=-x-z,我们判断这个y是否>x且在字典中,若是则将[x, y, z]存入结果中
 """
 
 
@@ -55,29 +58,28 @@ class Solution:
         from collections import defaultdict
         res = []
         num_count = defaultdict(int)
-        nums.sort()
         for i in nums:
             num_count[i] += 1
-        for key, value in enumerate(num_count):
-            if key >= 0 and value < 3:
-                break
-            if key == 0 and value > 2:
+        nums = sorted(num_count)
+        for idx, x in enumerate(nums):
+            if x == 0 and num_count[x] > 2:
                 res.append([0, 0, 0])
-            elif value > 1:
-                if -2 * key in num_count:
-                    res.append([value, value, -2*value])
-            else:
-                y_z = -value
-                for y in num_count.keys():
-                    z = y_z - y
-                    if z < y:
-                        break
-                    if z in num_count.keys() and z != y:
-                        res.append([value, y, z])
+            elif x != 0 and num_count[x] > 1:
+                if x * -2 in num_count:
+                    res.append([x, x, x * -2])
+            if x < 0:
+                y_and_z = -x
+                z_min = -x // 2
+                z_idx = len(nums) - 1
+                while nums[z_idx] > z_min:
+                    y = y_and_z - nums[z_idx]
+                    if y > x and y < nums[z_idx] and y in num_count:
+                        res.append([x, y, nums[z_idx]])
+                    z_idx -= 1
         return res
 
 
 if __name__ == "__main__":
     s = Solution()
-    test = [-1, 0, 1, 2, -1, -4]
+    test = [1, 1, -2]
     print(s.threeSum(test))
