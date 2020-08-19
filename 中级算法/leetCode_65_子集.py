@@ -22,15 +22,23 @@ url: https://leetcode-cn.com/leetbook/read/top-interview-questions-medium/xv67o6
 当已排列的数字长度为0则都可以进行排列.每次排列时先将上一次排列的结果添加到res中.
 2. 在已有的子集上追加
     在已有的子集上追加当前数字,然后将得到的list[list[int]]追加到res中.
+3. api调用
+    itertools.combinations(iterable, r),返回iterable中,所有长度为r的不重复子序列
 """
 from typing import List
 
 
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        res = [[]]
-        for num in nums:
-            res.extend([curr+[num] for curr in res])
+        # res = [[]]
+        # for num in nums:
+        #     res.extend([curr+[num] for curr in res])
+        # return res
+        from itertools import combinations
+        res = []
+        for i in range(len(nums)+1):
+            for temp in combinations(nums, i):
+                res.append(temp)
         return res
         # def backtrack(first=0):
         #     res.append(nums[:first])
