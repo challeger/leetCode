@@ -18,14 +18,15 @@ url: https://leetcode-cn.com/leetbook/read/top-interview-questions-medium/xwm8ne
 
 class Solution:
     def fractionToDecimal(self, numerator: int, denominator: int) -> str:
-        if not test1:
+        if not numerator:
             return '0'
         res = []
         # 判断正负
-        if numerator > 0 ^ denominator > 0:
+        if (numerator > 0) ^ (denominator > 0):
             res.append('-')
         # 将绝对值进行整除与求余
-        int_num, foo = divmod(abs(numerator), abs(denominator))
+        numerator, denominator = abs(numerator), abs(denominator)
+        int_num, foo = divmod(numerator, denominator)
         # 整数部分直接添加到结果中
         res.append(str(int_num))
         # 判断是否要求小数
@@ -53,7 +54,7 @@ class Solution:
 
 
 if __name__ == "__main__":
-    test1 = 1
-    test2 = 3
+    test1 = 7
+    test2 = -12
     s = Solution()
     print(s.fractionToDecimal(test1, test2))
