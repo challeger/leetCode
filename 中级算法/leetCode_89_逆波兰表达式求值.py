@@ -10,8 +10,7 @@ url: https://leetcode-cn.com/leetbook/read/top-interview-questions-medium/xw20mv
     输入: ["2", "1", "+", "3", "*"] (2+1)*3
     输出: 9
 思路:
-    如果小数部分有循环,那么循环开始时的余数必然在之前出现过一次
-    以此为依据来判断是否进入了循环.
+    用栈
 """
 from typing import List
 
