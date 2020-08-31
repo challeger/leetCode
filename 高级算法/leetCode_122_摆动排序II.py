@@ -7,6 +7,10 @@ url: https://leetcode-cn.com/leetbook/read/top-interview-questions-hard/xdnx6s/
     输入: nums = [1, 5, 1, 1, 6, 4]
     输出: 可能的答案 [1, 4, 1, 5, 1, 6]
 思路:
+    先使用快速选择找到数组的中位数,然后根据中位数进行三分排序..
+    那么对于数组中间两分,左边的元素最大值不会超过中位数,右边元素的最小值
+    不会小于中位数,那么倒序将两边数组的值插入结果中,这样就不会出现55这样相等
+    的情况
 """
 from typing import List
 
